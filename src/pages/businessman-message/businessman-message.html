@@ -1,0 +1,26 @@
+<ion-content>
+  <div class="subBanner"></div>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-list inset>
+              <ion-item-sliding *ngFor="let item of recepient">
+                <ion-item ion-item (click)="pushChat(item)">
+                  {{item}}
+                </ion-item> 
+                <ion-item-options side="right">
+                  <button ion-button color="danger" (click)="delete(item)"></button>
+                </ion-item-options>
+              </ion-item-sliding>
+            </ion-list>  
+        </ion-card>
+      </ion-col>
+
+      <ion-col>
+        <button ion-button round outline (click)="messageAdmin()">Message Tourism Officer</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,37 @@
+<ion-content *ngIf="!mobile">
+  <ion-grid fixed>
+
+  <img class="banner animated fadeInDown" src="assets/imgs/eventsBanner.jpg">
+  <h1>Featured Annual Events & Festivals</h1>
+  <ion-row>
+    <ion-card class="information animated fadeIn" ion-col *ngFor="let items of events" col-6 col-md-4 col-lg-6>
+      <ion-card-header center text-center>
+          {{items.title}}
+      </ion-card-header>
+      <ion-card-content>
+          <img class="infoImage" [src]="items.image">
+          <button (click)="pushEvent(items)" ion-button round outline block color="logo-border">Click for More</button>
+          <div id="content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{items.description}}</div>
+      </ion-card-content> 
+    </ion-card>
+  </ion-row> 
+  </ion-grid>
+</ion-content>
+
+
+<ion-content *ngIf="mobile">
+  <img class="animated fadeInDown" src="assets/imgs/eventsBanner.jpg">
+  <h1 text-center>Featured Events & Festivals</h1>
+
+  <ion-card (click)="pushEvent(items)" class="animated fadeIn" *ngFor="let items of events">
+    <ion-card-header class="headerMobile" center text-center>
+        {{items.title}}
+    </ion-card-header>
+    <ion-card-content>
+        <img class="infoImage" [src]="items.image">
+        <div text-justify >
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{items.description}}
+        </div>
+    </ion-card-content> 
+  </ion-card>
+</ion-content>

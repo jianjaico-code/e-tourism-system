@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-navbar>
+    <ion-row>
+        <ion-col col-10>
+          <ion-searchbar (ionInput)="getItems($event)" placeholder="Search For Email"></ion-searchbar>
+        </ion-col>
+    
+        <ion-col col-2>
+          <ion-buttons end>
+            <button (click)="exit()" color="theme_font" clear ion-button icon-only><ion-icon name="ios-close-circle-outline"></ion-icon></button>
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-grid fixed>
+      <ion-card class="ratingCard" *ngFor="let item of ratings">
+        <ion-row *ngIf="rate" padding>
+          <ion-col col-6>
+            <ion-avatar>
+              <img class="profilePic" [src]="item.profilePic">
+            </ion-avatar>
+          </ion-col>
+  
+          <ion-col text-center center class="ratingInfo" col-6>
+            <div>{{item.email}}</div>
+              <div *ngIf="item.rating == 1">
+                <ion-icon id="star1" name="star"></ion-icon>
+              </div>
+              <div *ngIf="item.rating == 2">
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+              </div>
+              <div *ngIf="item.rating == 3">
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+              </div>
+              <div *ngIf="item.rating == 4">
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star"></ion-icon>
+              </div>
+              <div *ngIf="item.rating == 5">
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star"></ion-icon>
+                <ion-icon id="star5" name="star"></ion-icon>
+              </div>
+          </ion-col>
+        </ion-row>
+  
+       <div class="ratingComment" padding center text-justify>{{item.comments}}</div>
+       <ion-row text-center center>
+         <ion-col *ngIf="!userRestricted">
+            <button center color="logo_border" ion-button round (click)="removeRating(item.key)">Delete</button>
+         </ion-col>
+       </ion-row>
+      </ion-card>
+
+      <ion-card *ngIf="!rate" padding>
+        <ion-row>
+          <ion-col center text-center>
+            <div class="rateHeader">No Ratings/Reviews Posted Yet</div>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+  </ion-grid>
+</ion-content>

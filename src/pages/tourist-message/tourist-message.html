@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>Message Admin</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="exitChat()">
+          <ion-icon name="ios-arrow-forward"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+      <ion-item *ngFor="let item of chat; let last = last" no-lines>
+        <div *ngIf="item.email == senderEmail" class="chat-message" text-right>
+          <div class="right-bubble">
+            <span class="msg-name">Me</span>
+            <span class="chat-date">{{item.date | date:'short'}}</span>
+            <ion-card-content>
+              <p text-wrap>{{item.message}}</p>
+              {{last ? callFunction() : ''}}
+            </ion-card-content>
+          </div>
+        </div>
+  
+        <div class="chat-message" text-left *ngIf="item.email !== senderEmail && item.email">
+          <div class="left-bubble">
+            <span class="msg-name">(Admin) {{item.email}}</span>
+            <span class="msg-date">{{item.date | date:'short'}}</span>
+            <ion-card-content>
+              <p text-wrap>{{item.message}}</p>
+              {{last ? callFunction() : ''}}
+            </ion-card-content>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  
+  <ion-footer class="messageBox">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-10>
+          <ion-input type="text" placeholder="Type a message" [(ngModel)]="message" name="message" (keyup.enter)="sendMessage()"></ion-input>
+        </ion-col>
+        <ion-col col-2 (click)="sendMessage()">
+          <ion-icon name="paper-plane"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-footer>

@@ -1,0 +1,195 @@
+<ion-content *ngIf="!mobile">
+    <ion-slides class="animated fadeInDown" autoplay="3000" loop="true" speed="2000">
+      <ion-slide>
+        <img class="banner" src="../../assets/imgs/banner2.jpg">
+      </ion-slide>
+      <ion-slide>
+        <img class="banner" src="../../assets/imgs/banner.jpg">
+      </ion-slide>
+      <ion-slide>
+        <img class="banner" src="../../assets/imgs/banner4.jpg">
+      </ion-slide>
+    </ion-slides>
+  <ion-grid fixed>
+
+    <ion-row>
+      <ion-col>
+        <ion-card class="information">
+          <ion-card-header center text-center>
+            HISTORICAL BACKGROUND
+          </ion-card-header>
+          <ion-card-content>
+            <ion-row>
+              <ion-col>
+                  <img class="infoImage" src="../../assets/imgs/historical.jpg">
+                  <button (click)="pushHistoricalBackground()" ion-button round outline block color="logo-border">Click for More</button>
+              </ion-col>
+              <ion-col class="infoText">
+                  Gingoog is a Manobo word for good luck.  The word implies good fortune, thus Gingoog means the city of Good Luck.  Gingoog originated from a thriving native settlement of Manobo tribe in the area, known today as Barangay Daan-Lungsod.
+              </ion-col>
+            </ion-row>
+           
+          </ion-card-content> 
+        </ion-card>
+      </ion-col>
+
+      <ion-col>
+        <ion-card class="information">
+          <ion-card-header center text-center>
+            GETTING HERE 
+          </ion-card-header>
+          <ion-card-content>
+          <ion-row>
+            <ion-col class="infoText">
+                Laguindingan airport (approx. 130 kms away) and Butuan City airport (approx. 75 kms away) have daily flights to and from Manila through Philippine Airlines and Cebu Pacific Air.
+            </ion-col>
+            <ion-col>
+                <img class="infoImage" src="../../assets/imgs/gettinghere.jpg">
+                <button (click)="pushGettingHere()" ion-button round outline block color="logo-border">Click for More</button>
+            </ion-col>
+          </ion-row>
+          </ion-card-content> 
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-card class="visionCard">
+          <img class="visionMission" src="../../assets/imgs/Mission Vision.jpg">
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <h1>Featured News</h1>
+    <ion-scroll scrollX="true" direction="x">
+        <ion-card class="newsContent" ion-col *ngFor="let item of data" col-6 col-md-4 col-lg-4>
+          <img *ngIf="item.image" [src]="item.image">
+          <ion-card-content padding>
+              <div class="newsTitle" text-wrap>{{item.title}}</div>
+            <button (click)="news(item)" ion-button color="hellow_world" round block small icon-start>
+              <ion-icon name='ios-book-outline'></ion-icon>
+              Read More 
+            </button>
+            <ion-row>
+              <ion-col center text-center>
+                <p>by: {{item.name}}</p>
+              </ion-col>
+              <ion-col center text-center>
+                <span>{{item.date}}</span>
+              </ion-col>
+            </ion-row>
+            <div *ngIf="item.image" id="content">{{item.description}}...</div>
+            <div *ngIf="!item.image" id="noImage">{{item.description}}</div>
+          </ion-card-content>
+        </ion-card>
+    </ion-scroll>
+
+    <ion-row>
+      <ion-col>
+                <div class="faqHeader">FAQ</div>
+                <hr>
+                <ion-row>
+                  <ion-col>
+                    <h1>Q. Where is the Tourism Office?</h1>
+                    <p>A. The Tourism Officer is located at Barangay Sample</p>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <h1>Q. Where can I find information about the City?</h1>
+                    <p>A. The Tourism Officer is located at Barangay Sample</p>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <h1>Q. How can I contact the Establishment Owner for more details?</h1>
+                    <p>A. The Tourism Officer is located at Barangay Sample</p>
+                  </ion-col>
+                </ion-row>
+        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+
+<ion-content *ngIf="mobile">
+    <ion-slides class="animated fadeInDown slidesMobile" autoplay="3000" loop="true" speed="2000">
+      <ion-slide>
+        <img class="bannerMobile" src="../../assets/imgs/banner2.jpg">
+      </ion-slide>
+      <ion-slide>
+        <img class="bannerMobile" src="../../assets/imgs/banner.jpg">
+      </ion-slide>
+      <ion-slide>
+        <img class="bannerMobile" src="../../assets/imgs/banner4.jpg">
+      </ion-slide>
+    </ion-slides>
+
+    <ion-row>
+        <ion-col>
+          <ion-card class="information">
+            <ion-card-header center text-center>
+              HISTORICAL BACKGROUND
+            </ion-card-header>
+            <ion-card-content>
+              <ion-row>
+                <ion-col>
+                    <img class="infoImageMobile" src="../../assets/imgs/historical.jpg">
+                    <button (click)="pushHistoricalBackground()" ion-button round outline block color="logo-border">Click for More</button>
+                </ion-col>
+                <ion-col class="infoTextMobile">
+                    Gingoog is a Manobo word for good luck.  The word implies good fortune, thus Gingoog means the city of Good Luck.  Gingoog originated from a thriving native settlement of Manobo tribe in the area, known today as Barangay Daan-Lungsod.
+                </ion-col>
+              </ion-row>
+             
+            </ion-card-content> 
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+            <ion-card class="information">
+              <ion-card-header center text-center>
+                GETTING HERE 
+              </ion-card-header>
+              <ion-card-content>
+              <ion-row>
+                <ion-col class="infoTextMobile">
+                    Laguindingan airport (approx. 130 kms away) and Butuan City airport (approx. 75 kms away) have daily flights to and from Manila through Philippine Airlines and Cebu Pacific Air.
+                </ion-col>
+                <ion-col>
+                    <img class="infoImageMobile" src="../../assets/imgs/gettinghere.jpg">
+                    <button (click)="pushGettingHere()" ion-button round outline block color="logo-border">Click for More</button>
+                </ion-col>
+              </ion-row>
+              </ion-card-content> 
+            </ion-card>
+          </ion-col>
+      </ion-row>
+
+      <h1>Featured News</h1>
+    <ion-scroll class="newsScrollMobile" scrollX="true" direction="x">
+        <ion-card class="newsContent newsContentMobile" ion-col *ngFor="let item of data" col-6 col-md-4 col-lg-4>
+          <img class="newsMobile" *ngIf="item.image" [src]="item.image">
+          <ion-card-content padding>
+              <div class="newsTitle" text-wrap>{{item.title}}</div>
+            <button (click)="news(item)" ion-button color="hellow_world" round block small icon-start>
+              <ion-icon name='ios-book-outline'></ion-icon>
+              Read More 
+            </button>
+            <ion-row>
+              <ion-col center text-center>
+                <p>by: {{item.name}}</p>
+              </ion-col>
+              <ion-col center text-center>
+                <span>{{item.date}}</span>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+    </ion-scroll>
+</ion-content>
+

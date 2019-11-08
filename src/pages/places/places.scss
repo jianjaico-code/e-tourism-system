@@ -1,0 +1,53 @@
+page-places {
+    .searchbar-md .searchbar-input {
+        border-radius: 23px !important;
+        width: 100%;
+    }
+
+    #content {
+        margin-top: 5%;
+        overflow: hidden; 
+        text-overflow: ellipsis;
+        height: 3em;
+        line-height: 1em;
+        text-align: justify;
+    }
+
+    ion-card-title {
+        font-family: "Caviar Dreams" !important;
+        color:blue;
+    }
+
+    .imageSlider {
+        height: 200px;
+        width: 100%;
+        border-radius: 5% !important;
+     }
+     
+     .ion-md-star{
+        color: #ffb400;
+    }
+
+    .ion-md-star-outline{
+        color: #ffb400;
+    }
+
+
+     .infoData {
+        font-family: "Caviar Dreams" !important;
+        font-size: 18px;
+        color: map_get($colors,logo_border) !important;
+     }
+
+     .activationAlert{
+        font-size: 19px;
+        text-align: center;
+        margin: auto;
+        font-family: "Caviar Dreams" !important;
+        color: map_get($colors,danger) !important;
+     }
+
+     .activated{
+        color: map_get($colors,activated) !important;  
+     }
+}

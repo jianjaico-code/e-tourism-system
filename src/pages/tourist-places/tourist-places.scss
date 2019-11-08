@@ -1,0 +1,73 @@
+page-tourist-places {
+    .searchbar-md .searchbar-input {
+        border-radius: 23px !important;
+        width: 100%;
+    }
+    
+    .menuRow{
+        margin-top: 5%;
+        margin-bottom: 3%;
+    }
+
+    #content {
+        margin-top: 5%;
+        overflow: hidden; 
+        text-overflow: ellipsis;
+        height: 3em;
+        line-height: 1em;
+        font-size: 20px;
+        text-align: justify;
+        color: map_get($colors,dark) !important;
+    }
+
+    .contentMobile{
+        font-size: 13px !important;
+    }
+
+    ion-card-title {
+        font-family: "Caviar Dreams" !important;
+        color: map_get($colors,dark) !important;
+    }
+
+    ion-slides{
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+    
+    .imageSlider {
+        width: 325px;
+        height: 220px;
+        margin-left: 10%;
+        display: inline-block;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        border: 5px solid #ffffff;
+     }
+
+     .infoData {
+        // font-family: "Caviar Dreams" !important;
+        font-size: 18px;
+        color: map_get($colors,dark) !important;
+     }
+
+     .ion-md-star{
+        color: #ffb400;
+    }
+
+    .ion-md-star-outline{
+        color: #ffb400;
+    }
+
+     .places{
+         margin-bottom: 2%;
+         border-radius: 10%;
+         border: 2px solid map_get($colors,light);
+         background-image: url('../../assets/imgs/bg.jpg');
+     }
+
+     .searchbar-md{
+         padding: 0px !important;
+     }
+     
+}

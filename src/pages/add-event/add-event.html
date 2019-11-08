@@ -1,0 +1,57 @@
+<ion-content *ngIf="!mobile">
+    <ion-grid fixed>
+      <ion-card no-margin margin-bottom class="full-width">
+        <ion-item class="border-bottom">
+          <h1>Events</h1>
+          <ion-row>
+            <ion-col>
+              <ion-icon tappable menuToggle style="zoom:1.5;" name="menu"></ion-icon>
+            </ion-col>
+
+            <ion-col>
+              <div class="pull-right">
+                <ion-icon  name="add-circle" color="primary"></ion-icon>
+                <span tappable (click)="functionEvent(null, false)">Add Event</span>
+              </div>
+            </ion-col>
+          </ion-row>
+      
+        </ion-item>
+        <ion-item class="animated fadeIn">
+            <table *ngIf="event" datatable [dtOptions]="dtOptions">
+              <thead>
+                <tr>
+                  <th>Event Title</th>
+                  <th>Event Image</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of event" text-center center>
+                  <td>{{ item.title }}</td>
+                  <td><img class="dataImage" [src]="item.image"></td>
+                  <td><button ion-button (click)="functionEvent(item.key, true)">Edit</button></td>
+                </tr>
+              </tbody>
+              </table>
+          </ion-item>
+        </ion-card>
+    </ion-grid>
+  </ion-content>
+
+  <ion-header *ngIf="mobile">
+    <ion-navbar padding color="navbar_color" >
+        <ion-icon tappable (click)="toggleMenu()" style="zoom:1.5;" name="menu"></ion-icon>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content padding *ngIf="mobile">
+    <ion-list *ngFor="let item of event">
+      <ion-item class="border-bottom">
+        <ion-avatar item-start>
+          <img [src]="item.image">
+        </ion-avatar>
+        <h2>{{item.title}} &nbsp;<span *ngIf="item.status" class="dot"></span></h2>
+      </ion-item>
+    </ion-list>
+  </ion-content>

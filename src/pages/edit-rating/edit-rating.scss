@@ -1,0 +1,44 @@
+page-edit-rating {
+    .rateHeader {
+        color: map_get($colors,logo_border);
+        font-family: "Caviar Dreams" !important;
+        font-size: 20px;
+        color: map_get($colors,theme_color);
+    }
+    
+    .ratingInfo {
+        color: #ffff;
+        font-size: 16px;
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+    }
+
+    .ratingComment {
+        font-size: 15px;
+        color: #ffff;
+    }
+
+    .ratingCard {
+        background-color: map_get($colors,theme_color);
+        border-radius: 1%;
+        border: 2px solid map_get($colors,logo_border);
+      }
+
+    .profilePic {
+        vertical-align: middle;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        display: inline-block;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        border: 5px solid map_get($colors,logo_border);
+    }
+
+    .searchbar-md .searchbar-input {
+        border-radius: 23px !important;
+        width: 100%;
+    }
+}

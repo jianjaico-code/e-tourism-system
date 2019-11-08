@@ -1,0 +1,34 @@
+<ion-content padding>
+  <button (click)="close()" clear ion-button icon-only><ion-icon name="ios-arrow-dropleft"></ion-icon>Back</button>
+  <div class="profileDiv animated fadeInDown">
+    <div class="upperDiv">
+      <ion-row>
+        <ion-col>
+          <div class="editBtn" (click)="editProfile()">{{caption}}</div>
+        </ion-col>
+      </ion-row>
+      <input type="file" #fileInput style="visibility: hidden; height: 0px;" (change)="detectFiles($event)"/>
+      <div class="profile-image-wrapper" (click)="getPicture()">
+        <img class="profile-image" [src]="profilePic">
+        <div class="cameraOutline"><ion-icon name="ios-camera-outline" class="ios-camera-outline" md="ios-camera-outline" style="color: white !important"></ion-icon></div>
+      </div>
+    </div>
+  
+    <ion-list>
+      <ion-item>
+        <ion-label class="label_here">Full Name:</ion-label>
+        <ion-input [(ngModel)]="data.name" disabled="{{isDisabled}}" type="text" #fullname></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label class="label_here">Address:</ion-label>
+        <ion-input [(ngModel)]="data.address" disabled="{{isDisabled}}" type="text" #address></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label class="label_here">Password:</ion-label>
+        <ion-input disabled="{{isDisabled}}" type="password" #password></ion-input>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

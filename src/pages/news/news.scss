@@ -1,0 +1,24 @@
+page-news {
+    #content {
+        margin-top: 5%;
+        overflow: hidden; 
+        text-overflow: ellipsis;
+        height: 3em;
+        line-height: 1em;
+        text-align: justify;
+    }
+
+    .searchbar-md .searchbar-input {
+        border-radius: 23px !important;
+        width: 100%;
+    }
+
+    ion-card-title {
+        font-family: "Caviar Dreams" !important;
+    }
+
+    img {
+        height: 200px;
+        width: 100%;
+    }
+}

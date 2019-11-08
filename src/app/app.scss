@@ -1,0 +1,181 @@
+ion-header .toolbar {
+    margin: auto;
+  }
+   
+   @media (min-width: map-get($grid-breakpoints, lg)) {
+    ion-navbar.toolbar,
+    ion-header .toolbar[fixed],
+    ion-footer .toolbar[fixed],
+    ion-tabs .tabbar {
+      top: 0px !important;
+      height: 110px;
+      margin: 0;
+      padding-right: calc((100% - #{map-get($grid-max-widths, lg)}) / 2);
+      padding-left: calc((100% - #{map-get($grid-max-widths, lg)}) / 2);
+    }
+
+    .toolbar-title{
+      font-size: 30px !important;
+      margin-bottom: 5% !important; 
+    }
+
+    .tabs-md .tab-button{
+      min-height: 1.6rem !important;
+    }
+
+    .tab-button-text {
+      font-size: 21px !important;
+      font-family: "Caviar Dreams" !important;
+    }
+
+    .alert-message {
+      overflow-y: auto !important;
+      color: map_get($colors,dark) !important;
+      font-family: "Caviar Dreams" !important;
+      font-size: 20px !important;
+    }
+
+    .scroll-content{
+      overflow-y: auto !important;
+    }
+   }
+
+   ion-content{
+     background-image: url('../assets/imgs/bg.jpg');
+    }
+
+   ion-title{
+    font-family: "Caviar Dreams" !important;
+   }
+
+  .toolbar-background {
+    background-color: map_get($colors,navbar_color) !important;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: map_get($colors,logo_border) !important;
+  }
+
+  .alert-button {
+    color: map_get($colors,navbar_color) !important;
+  }
+
+  .alert-radio-icon {
+    border-color: map_get($colors,logo_border) !important;
+  }
+
+  .alert-radio-inner{
+    background-color: map_get($colors,logo_border) !important;
+  }
+
+  .alert-md [aria-checked=true] .alert-radio-label{
+    color: map_get($colors,dark) !important;
+  } 
+
+  .logo{
+    width: 35% !important;
+    height: 75px;
+  } 
+
+  .border-bottom {
+    border-bottom: 1px solid rgba(86, 61, 124, 0.1);
+  }
+
+  .pull-left {
+    float: left;
+  }
+  
+  .pull-right {
+    float: right;
+  }
+
+  .card {
+    background: #FFF;
+    border-radius: 1rem;
+    box-shadow: 0 0 1px rgba(86, 61, 124, 0.2), 0 2px 4px rgba(86, 61, 124, 0.15);
+  }
+
+  .no-margin {
+    margin: 0;
+  }
+
+  .text-white {
+    color: #fff;
+  }
+  
+  .user-profile {
+    .user-avatar {
+      width: 68px !important;
+      height: 68px !important;
+      display: inline-block;
+      border-radius: 50%;
+      box-shadow: inset 0 0 10rem rgba(0,0,0,.25), 0 0 4rem rgba(255,255,255,.45);
+      img {
+        border-radius: 50%;
+        width: 68px !important;
+        height: 68px !important;
+      }
+    }
+    .toolbar-background {
+      background-image: linear-gradient(135deg, color($colors, dark), color($colors, navbar_color));
+    }
+  
+    .other-data {
+      .column {
+        &:first-child {
+          border-right: 1px solid rgba(36, 50, 157, .25);
+        }
+      }
+    }
+  }
+
+  .animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+  }
+  
+  .animated.infinite {
+    animation-iteration-count: infinite;
+  }
+  
+  .animated.hinge {
+    animation-duration: 2s;
+  }
+  
+  .animated.flipOutX,
+  .animated.flipOutY,
+  .animated.bounceIn,
+  .animated.bounceOut {
+    animation-duration: .75s;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .fadeIn {
+    animation-name: fadeIn;
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translate3d(0, -100%, 0);
+    }
+  
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  
+  .fadeInDown {
+    animation-name: fadeInDown;
+  }
+ 

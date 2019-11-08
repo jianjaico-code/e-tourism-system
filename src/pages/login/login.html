@@ -1,0 +1,53 @@
+<ion-content>
+  <ion-row>
+    <ion-col>
+      <ion-buttons>
+        <button (click)="exit()" color="logo_border" class="exitBtn" clear ion-button icon-only><ion-icon name="close-circle"></ion-icon></button>
+      </ion-buttons>
+    </ion-col>
+  </ion-row>
+  <ion-grid fixed>
+      <ion-row>
+        <ion-col>
+            <img class="loginLogo animated fadeInDown"  src="../../assets/imgs/logo.png">
+        </ion-col>
+      </ion-row>
+      <h1 text-center>Login To Continue</h1>
+      <p text-center>Don't Have An Account? <a (click)="signup()" tappable="">Sign Up</a></p>
+
+    <div class="formContainer">
+        <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+
+          <ion-item>
+            <ion-label stacked>Email</ion-label>
+            <ion-input #email formControlName="email" type="email" placeholder="Your email address"
+              [class.invalid]="!loginForm.controls.email.valid &&
+                loginForm.controls.email.dirty"></ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid  &&
+            loginForm.controls.email.dirty">
+            <p>Please enter a valid email.</p>
+          </ion-item>
+      
+          <ion-item>
+            <ion-label stacked>Password</ion-label>
+            <ion-input #password formControlName="password" type="password" placeholder="Your password"
+              [class.invalid]="!loginForm.controls.password.valid &&
+                loginForm.controls.password.dirty"></ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid  &&
+            loginForm.controls.password.dirty">
+            <p>Your password needs more than 6 characters.</p>
+          </ion-item>
+      
+          <button color="logo_border" ion-button block type="submit">
+            Login
+          </button>
+        </form>
+
+        <button color="logo_border" ion-button block clear (click)="goToResetPassword()">
+          I forgot my password
+        </button>
+    </div>
+  </ion-grid>
+</ion-content>

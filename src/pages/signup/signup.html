@@ -1,0 +1,62 @@
+<ion-content>
+  <ion-grid fixed>
+      <ion-row>
+          <ion-col>
+            <ion-buttons>
+              <button (click)="exit()" color="logo_border" clear ion-button icon-only><ion-icon name="ios-close-circle-outline"></ion-icon></button>
+            </ion-buttons>
+          </ion-col>
+          <ion-col>
+            <ion-buttons end>
+              <button (click)="login()" color="logo_border" ion-button clear ion-button>Login</button>
+            </ion-buttons>
+          </ion-col>
+        </ion-row>
+    <div class="formContainer">
+      <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
+
+        <ion-item>
+          <ion-label stacked>Email</ion-label>
+          <ion-input formControlName="email" type="email" placeholder="Your email address"
+            [class.invalid]="!signupForm.controls.email.valid && signupForm.controls.email.dirty" #email></ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!signupForm.controls.email.valid  && signupForm.controls.email.dirty">
+          <p>Please enter a valid email.</p>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label stacked>Password</ion-label>
+          <ion-input formControlName="password" type="password"  placeholder="Your password"
+            [class.invalid]="!signupForm.controls.password.valid && signupForm.controls.password.dirty" #password></ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!signupForm.controls.password.valid  && signupForm.controls.password.dirty">
+          <p *ngIf="!mobile">Your password needs more than 6 characters.</p>
+          <p class="pMobile" *ngIf="mobile">Your password needs more than 6 characters.</p>
+        </ion-item>
+    
+          <ion-item>
+            <ion-label stacked>Full Name</ion-label>
+            <ion-input type="text" placeholder="Full Name" name="fullname" #name></ion-input>
+          </ion-item>
+      
+          <ion-item>
+            <ion-label stacked>Address</ion-label>
+            <ion-input type="text" placeholder="Address" name="address" #address></ion-input>
+          </ion-item>
+    
+          <ion-item>
+            <ion-label stacked>Type</ion-label>
+            <ion-select #usertypeid>
+              <ion-option value="1">Tourist</ion-option>
+              <ion-option value="2">Local Businessman</ion-option>
+            </ion-select>
+          </ion-item>
+      
+        <button color="logo_border" ion-button block type="submit">
+          Create an Account
+        </button>
+    
+      </form>
+    </div>
+  </ion-grid>
+</ion-content>

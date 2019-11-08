@@ -1,0 +1,134 @@
+<ion-header *ngIf="!mobile" fixed>
+
+  <ion-navbar>
+    <ion-row>
+      <ion-col>
+        <img class="logo animated fadeInDown" src="assets/imgs/logo.png">
+      </ion-col>
+      <ion-col col-3>
+        <ion-buttons>
+          <button class="btnApplied" (click)="login()" ion-button>Login</button>
+          <button class="btnApplied" (click)="signup()" ion-button>Sign Up</button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content *ngIf="!mobile">
+  <ion-grid fixed>
+
+   
+
+    <ion-row class="main" align-items-center>
+      <ion-col>
+          <div class="container">
+            <h5>Gingoog City, Misamis Oriental, Philippines</h5>
+            <hr>
+          </div>
+         <ion-card>
+           <ion-card-header>
+           </ion-card-header>
+            <ion-card-content>
+                <video style="width: 100%;" controls src="assets/imgs/vid.mp4"></video>
+            </ion-card-content>
+         </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="main animated fadeInDown" align-items-center>
+      <ion-col>
+        <div class="phoneImage">
+          <img src="assets/imgs/phoneImage.png">
+        </div>
+      </ion-col>
+
+      <ion-col>
+        <div class="container">
+          <h1>Download our App Now!!!</h1>
+          <p padding-button>
+            If you are a traveller or just passin' by in Gingoog, you can download our app so that you can easily get updated on whats happening here. You can also submit ratings and reviews to places you have been.
+          </p>
+          <button color="logo_border" block ion-button margin-top round><span class="button-inner">
+            Download Now
+          </span><div class="button-effect"></div></button>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col center text-center>
+          <h1>Gingoog City, Misamis Oriental, Philippines</h1>
+          <hr>
+          <div class="subHeader">"City of Good Luck"</div>
+          <div class="subContent">
+            The term Gingoog originally came from the word “Hingoog”, which means “Goodluck”, from a Lumad tribe of Manobo who settled in the area.The word implies good fortune, thus Gingoog City means the City of Good Luck. The natives of this place are the ones with the family names of “Gingco”, and “Gingoyon”.
+          </div>
+      </ion-col>
+    </ion-row>
+    
+  </ion-grid>
+  
+  <div class="devInfo">
+    <ion-row>
+      <ion-col><div class="devHeader" text-center center>The Development Team</div></ion-col>
+    </ion-row>
+    <ion-row class="divInfoImage">
+      <ion-col>
+        <img class="infoImage" src="assets/imgs/1.jpg">
+        <h5 text-center center>Charles H. Sumugat</h5>
+        <h6 text-center center>System Designer</h6>
+        
+      </ion-col>
+      <ion-col>
+        <img class="infoImage" src="assets/imgs/4.jpg">
+        <h5 text-center center>Vinson J. Jadol</h5>
+        <h6 text-center center>System Programmer</h6>
+       
+      </ion-col>
+      <ion-col>
+        <img class="infoImage" src="assets/imgs/2.jpg">
+        <h5 text-center center>Marlou Sean E. Kho</h5>
+        <h6 text-center center>System Analyst & Technical Writer</h6>
+        <ion-row>
+          <ion-col>
+           
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>      
+  </div>
+
+<ion-row>
+  <ion-col>
+    <div class="myFooter">
+      <ion-row>
+        <ion-col>
+          <p text-center center>&copy;2019 Copyright All Right Reserved</p>
+        </ion-col>
+
+        <ion-col>
+          <ion-row>
+            <ion-col>
+              <p text-center center>Powered by: Bracket Logic</p>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-col>
+</ion-row>
+</ion-content>
+
+<ion-content padding *ngIf="mobile">
+  <ion-card class="mobileInfo" padding>
+      <img center src="assets/imgs/logo.png">
+    <button (click)="login()" block ion-button>Login</button>
+    <button (click)="signup()" block ion-button>Sign Up</button>
+  </ion-card>
+
+</ion-content>
+

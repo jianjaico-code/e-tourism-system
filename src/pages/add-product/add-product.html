@@ -1,0 +1,55 @@
+<ion-content padding>
+    <div class="prodHeader">Add Product (Optional)</div>
+    <ion-item>
+      <ion-label stacked>Product Name</ion-label>
+      <ion-input [(ngModel)]="data.name" type="text" placeholder="Name" name="prodName" #prodName></ion-input>
+    </ion-item>
+  
+    <ion-row>
+      <ion-col>
+          <ion-item>
+            <ion-label stacked>Product Price</ion-label>
+            <ion-input [(ngModel)]="data.price"  type="number" placeholder="Price" name="prodPrice" #prodPrice></ion-input>
+          </ion-item>
+      </ion-col>
+    </ion-row>
+  
+    <ion-item>
+      <label>
+        <input type="file" (change)="detectFiles($event)" multiple>
+      </label>
+    </ion-item>
+  
+    <ion-row>
+      <ion-col>
+        <button *ngIf="!editStatus" ion-button round block center [disabled]="!selectedFiles" (click)="savePhotoStorage()">Save</button>
+        <button *ngIf="editStatus" ion-button round block center (click)="update(data.key)">Update</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button round block center *ngIf="!selectedFiles" (click)="exit()">Skip</button>
+        <button ion-button round block center *ngIf="selectedFiles" [disabled]="!obj" (click)="exit()">Done</button>
+      </ion-col>
+    </ion-row>
+  
+    <ion-list *ngFor="let item of dataArr">
+      <ion-row>
+        <ion-col>
+          <p>{{item.name}}</p>
+        </ion-col>
+  
+        <ion-col>
+          <p>&#8369; {{item.price}}.00</p>
+        </ion-col>
+  
+        <ion-col>
+          <img [src]="item.imageUrl">
+        </ion-col>
+
+        <ion-col>
+          <button (click)="edit(item)" ion-button round clear>Edit</button>
+        </ion-col>
+
+      </ion-row>
+    </ion-list>
+  </ion-content>
+  

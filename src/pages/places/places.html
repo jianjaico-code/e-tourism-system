@@ -1,0 +1,116 @@
+<ion-content>
+    <div class="subBanner"></div>
+  <ion-grid fixed>
+      <ion-row>
+        <ion-col col-4>
+          <ion-searchbar (ionInput)="getItems($event)" placeholder="Search for a Place"></ion-searchbar>
+        </ion-col>
+        <ion-col col-2>
+          <button ion-button outline color="theme_font" (click)="addEstablishment()">Add Place</button>
+        </ion-col>
+      </ion-row>
+    <ion-row>
+      <ion-card ion-col *ngFor="let item of establishments" col-6 col-md-4 col-lg-6>
+        <ion-row>
+            <ion-col *ngIf="item.status == 2" class="activationAlert">
+              <ion-icon item-start name="alert"></ion-icon>
+              Pending for Activation
+            </ion-col>
+            <ion-col *ngIf="item.status == 1" class="activationAlert activated">
+              <ion-icon name="checkmark-circle"></ion-icon>
+              Activated
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <button (click)="update(item.key)" ion-button color="logo_border" clear small icon-start>
+                <ion-icon name="md-brush"></ion-icon>
+                Update
+              </button>
+            </ion-col>
+
+            <ion-col text-right>
+              <button (click)="rating(item)" ion-button color="logo_border" clear small icon-start>
+                <ion-icon name="md-star"></ion-icon>
+                Edit Ratings
+              </button>
+            </ion-col>
+      
+          </ion-row>
+        <ion-card-content>
+        <ion-slides pager>
+          <ion-slide *ngFor="let item of item.imageurl">
+            <img class="imageSlider" [src]="item">
+          </ion-slide>
+        </ion-slides>
+          <ion-card-title>{{item.name}}</ion-card-title>
+          <ion-row>
+            <ion-col class="infoData">
+            <div *ngIf="item.averageRate == 0">
+              <ion-icon color="logo_border" id="star1" name="star-outline"></ion-icon>
+              <ion-icon color="logo_border" id="star2" name="star-outline"></ion-icon>
+              <ion-icon color="logo_border" id="star3" name="star-outline"></ion-icon>
+              <ion-icon color="logo_border" id="star4" name="star-outline"></ion-icon>
+              <ion-icon color="logo_border" id="star5" name="star-outline"></ion-icon>
+              {{item.peopleRated}} Reviews
+            </div>
+            <div *ngIf="item.averageRate == 1">
+              <ion-icon color="logo_border" id="star1" name="star"></ion-icon>
+              <ion-icon color="logo_border" id="star2" name="star-outline"></ion-icon>
+              <ion-icon color="logo_border" id="star3" name="star-outline"></ion-icon>
+              <ion-icon color="logo_border" id="star4" name="star-outline"></ion-icon>
+              <ion-icon color="logo_border" id="star5" name="star-outline"></ion-icon>
+              {{item.peopleRated}} Reviews
+            </div>
+            <div *ngIf="item.averageRate == 2">
+              <ion-icon color="logo_border" id="star1" name="star"></ion-icon>
+              <ion-icon color="logo_border" id="star2" name="star"></ion-icon>
+              <ion-icon color="logo_border" id="star3" name="star-outline"></ion-icon>
+              <ion-icon color="logo_border" id="star4" name="star-outline"></ion-icon>
+              <ion-icon color="logo_border" id="star5" name="star-outline"></ion-icon>
+              {{item.peopleRated}} Reviews
+            </div>
+            <div *ngIf="item.averageRate == 3">
+              <ion-icon color="logo_border" id="star1" name="star"></ion-icon>
+              <ion-icon color="logo_border" id="star2" name="star"></ion-icon>
+              <ion-icon color="logo_border" id="star3" name="star"></ion-icon>
+              <ion-icon color="logo_border" id="star4" name="star-outline"></ion-icon>
+              <ion-icon color="logo_border" id="star5" name="star-outline"></ion-icon>
+              {{item.peopleRated}} Reviews
+            </div>
+            <div *ngIf="item.averageRate == 4">
+              <ion-icon color="logo_border" id="star1" name="star"></ion-icon>
+              <ion-icon color="logo_border" id="star2" name="star"></ion-icon>
+              <ion-icon color="logo_border" id="star3" name="star"></ion-icon>
+              <ion-icon color="logo_border" id="star4" name="star"></ion-icon>
+              <ion-icon color="logo_border" id="star5" name="star-outline"></ion-icon>
+              {{item.peopleRated}} Reviews
+            </div>
+            <div *ngIf="item.averageRate == 5">
+              <ion-icon color="logo_border" id="star1" name="star"></ion-icon>
+              <ion-icon color="logo_border" id="star2" name="star"></ion-icon>
+              <ion-icon color="logo_border" id="star3" name="star"></ion-icon>
+              <ion-icon color="logo_border" id="star4" name="star"></ion-icon>
+              <ion-icon color="logo_border" id="star5" name="star"></ion-icon>
+              {{item.peopleRated}} Reviews
+            </div>  
+            </ion-col>
+            <ion-col class="infoData">
+              <span>{{item.address}}</span>
+            </ion-col>
+          </ion-row>
+          <div id="content">{{item.description}}</div>
+          <ion-row *ngIf="item.category == 1 || item.category == 2 || item.category == 3">
+            <ion-col>
+                <button ion-button block round (click)="addService(item.key)">Add Service</button>
+            </ion-col>
+            <ion-col>
+                <button ion-button block round (click)="addProduct(item.key)">Add Product</button>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+</ion-content>

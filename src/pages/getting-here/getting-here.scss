@@ -1,0 +1,38 @@
+page-getting-here {
+    .imgSrc {
+        width: 90%;
+        text-align: center;
+        margin: 8px auto 16px;
+
+        img{
+            height: 270px;
+            border: 5px solid map_get($colors, logo_border);
+        }
+    }
+
+    .container {
+        margin: 8px auto 16px;
+        max-width: 360px;
+        text-align: center;
+    }
+
+    .container p{
+        font-size: 21px;
+        text-align: justify;
+    }
+
+    h1 {
+        font-family: "Caviar Dreams" !important;
+        font-size: 40px;  
+        color: rgba(0,0,0,.87)
+    }
+
+    p {
+        color: rgba(0,0,0,.54)
+    }
+
+    .main {
+        margin-bottom: 10%;
+        margin-top: 1%; 
+    }
+}

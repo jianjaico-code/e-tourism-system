@@ -1,0 +1,25 @@
+<ion-content padding>
+  <ion-buttons>
+      <button (click)="close()" clear ion-button icon-only><ion-icon name="ios-arrow-dropleft"></ion-icon>Back</button>
+  </ion-buttons>
+  <ion-card>
+    <ion-item class="animated fadeIn">
+      <table *ngIf="data" datatable [dtOptions]="dtOptions">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of data" text-center center>
+            <td>{{item.name}}</td>
+            <td>&#8369; {{item.price}}.00</td>
+            <td><img class="itemImage" [src]="item.imageUrl"></td>
+          </tr>
+        </tbody>
+        </table>
+    </ion-item>
+  </ion-card>
+</ion-content>

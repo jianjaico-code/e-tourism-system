@@ -1,0 +1,81 @@
+<ion-content *ngIf="!mobile">
+  <ion-grid fixed>
+    <ion-card no-margin margin-bottom>
+      <ion-item class="animated fadeIn">
+        
+        <ion-row>
+          <ion-col class="messageList">
+            <ion-list *ngFor="let item of recepient">
+              <ion-item tappable (click)="pushChat(item.key, item.userType)" class="border-bottom">
+                <ion-avatar item-start>
+                  <img [src]="item.image">
+                </ion-avatar>
+                <h2>{{item.name}} &nbsp;<span *ngIf="item.status" class="dot"></span></h2>
+                <h3 *ngIf="item.userType == 1">Tourist</h3>
+                <h3 *ngIf="item.userType == 2">Local Businessman</h3>
+                <h3 *ngIf="item.userType == 3">Tourism Officer</h3>
+                <p>{{item.date}}</p>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+
+          <ion-col>
+            <div class="messageBox" id="messageBox" #messageBox>
+              <ion-list>
+                <ion-item *ngFor="let item of chat; let last = last" no-lines>
+                  <div *ngIf="item.email == senderEmail" class="chat-message" text-right>
+                    <div class="right-bubble">
+                      <span class="msg-name">Me</span>
+                      <span class="chat-date">{{item.date | date:'short'}}</span>
+                      <ion-card-content text-wrap>
+                        <p>{{item.message}}</p>
+                        {{last ? callFunction() : ''}}
+                      </ion-card-content>
+                    </div>
+                  </div>
+            
+                  <div class="chat-message" text-left *ngIf="item.email !== senderEmail && item.email">
+                    <div class="left-bubble">
+                      <span class="msg-name">{{item.email}}</span>
+                      <span class="msg-date">{{item.date | date:'short'}}</span>
+                      <ion-card-content text-wrap>
+                        <p>{{item.message}}</p>
+                        {{last ? callFunction() : ''}}
+                      </ion-card-content>
+                    </div>
+                  </div>
+                </ion-item>
+              </ion-list>
+            </div>
+            <ion-row class="chatBox">
+              <ion-col col-10>
+               <ion-item>
+                <ion-input type="text" placeholder="Type a message" [(ngModel)]="message" name="message" (keyup.enter)="sendMessage()"></ion-input>
+               </ion-item>
+              </ion-col>
+              <ion-col col-2>
+                <ion-icon name="paper-plane"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+
+      </ion-item>
+    </ion-card>   
+  </ion-grid>
+</ion-content>
+
+<ion-content *ngIf="mobile">
+  <ion-list *ngFor="let item of recepient">
+    <ion-item tappable (click)="messageOwner(item)" class="border-bottom">
+      <ion-avatar item-start>
+        <img [src]="item.image">
+      </ion-avatar>
+      <h2>{{item.name}} &nbsp;<span *ngIf="item.status" class="dot"></span></h2>
+      <h3 *ngIf="item.userType == 1">Tourist</h3>
+      <h3 *ngIf="item.userType == 2">Local Businessman</h3>
+      <h3 *ngIf="item.userType == 3">Tourism Officer</h3>
+      <p>{{item.date}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>

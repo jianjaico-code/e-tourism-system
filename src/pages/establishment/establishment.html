@@ -1,0 +1,994 @@
+<ion-content *ngIf="!mobile">
+  <ion-grid fixed>
+      <ion-row>
+        <ion-col>
+          <ion-buttons>
+            <button (click)="close()" clear ion-button icon-only><ion-icon name="ios-arrow-dropleft"></ion-icon>Back</button>
+            <button *ngIf="user && cat != 4" (click)="viewPermit(data.permits)" float-right clear ion-button icon-only><ion-icon name="document"></ion-icon>View Permit</button>
+            <button *ngIf="user" float-right (click)="edit(data.key, user, true)" clear ion-button icon-only><ion-icon name="create"></ion-icon>Edit</button>
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+
+    <div center text-center class="header">{{data.name}}</div>
+    <ion-slides pager autoplay="3000" loop="true" speed="2000">
+      <ion-slide *ngFor="let item of images">
+        <img class="imageSlider" [src]="item">
+      </ion-slide>
+    </ion-slides>
+
+    <ion-row>
+
+      <ion-col ion-col col-6>
+          <ion-card>
+              <ion-card-content>
+                <p padding text-center class="desc">
+                  {{data.description}}
+                </p>
+
+                <ion-row>
+                    <ion-col *ngIf="data.category == 1 || data.category == 2 || data.category == 3" center text-center>
+                      <ion-icon name='md-globe'></ion-icon>
+                      {{data.website}}
+                    </ion-col>
+                    <ion-col *ngIf="data.category == 1 || data.category == 2 || data.category == 3" center text-center>
+                      <ion-icon name='ios-phone-portrait-outline'></ion-icon>
+                      {{data.phone}}
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col center text-center>
+                      <ion-icon name="ios-navigate-outline"></ion-icon>
+                      {{data.address}}
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+      
+                    
+                  <ion-col center text-center>
+                    <div *ngIf="averageRate == 0">
+                      <ion-icon id="star1" name="star-outline"></ion-icon>
+                      <ion-icon id="star2" name="star-outline"></ion-icon>
+                      <ion-icon id="star3" name="star-outline"></ion-icon>
+                      <ion-icon id="star4" name="star-outline"></ion-icon>
+                      <ion-icon id="star5" name="star-outline"></ion-icon>
+                      ({{peopleRated}})
+                    </div>
+                    <div *ngIf="averageRate == 1">
+                      <ion-icon id="star1" name="star"></ion-icon>
+                      <ion-icon id="star2" name="star-outline"></ion-icon>
+                      <ion-icon id="star3" name="star-outline"></ion-icon>
+                      <ion-icon id="star4" name="star-outline"></ion-icon>
+                      <ion-icon id="star5" name="star-outline"></ion-icon>
+                      ({{peopleRated}})
+                    </div>
+                    <div *ngIf="averageRate == 2">
+                      <ion-icon id="star1" name="star"></ion-icon>
+                      <ion-icon id="star2" name="star"></ion-icon>
+                      <ion-icon id="star3" name="star-outline"></ion-icon>
+                      <ion-icon id="star4" name="star-outline"></ion-icon>
+                      <ion-icon id="star5" name="star-outline"></ion-icon>
+                      ({{peopleRated}})
+                    </div>
+                    <div *ngIf="averageRate == 3">
+                      <ion-icon id="star1" name="star"></ion-icon>
+                      <ion-icon id="star2" name="star"></ion-icon>
+                      <ion-icon id="star3" name="star"></ion-icon>
+                      <ion-icon id="star4" name="star-outline"></ion-icon>
+                      <ion-icon id="star5" name="star-outline"></ion-icon>
+                      ({{peopleRated}})
+                    </div>
+                    <div *ngIf="averageRate == 4">
+                      <ion-icon id="star1" name="star"></ion-icon>
+                      <ion-icon id="star2" name="star"></ion-icon>
+                      <ion-icon id="star3" name="star"></ion-icon>
+                      <ion-icon id="star4" name="star"></ion-icon>
+                      <ion-icon id="star5" name="star-outline"></ion-icon>
+                      ({{peopleRated}})
+                    </div>
+                    <div *ngIf="averageRate == 5">
+                      <ion-icon id="star1" name="star"></ion-icon>
+                      <ion-icon id="star2" name="star"></ion-icon>
+                      <ion-icon id="star3" name="star"></ion-icon>
+                      <ion-icon id="star4" name="star"></ion-icon>
+                      <ion-icon id="star5" name="star"></ion-icon>
+                      ({{peopleRated}})
+                    </div>
+                  </ion-col>
+                </ion-row>
+                <div padding>
+                  <ion-row>
+                    <ion-col *ngIf="!user && data.category != '4'">
+                      <button class="rateBtn" color="logo_border" ion-button block (click)="messageOwner()">Chat Owner</button>
+                    </ion-col>
+                    <ion-col *ngIf="!user && data.category != '4'">
+                      <button class="rateBtn" color="logo_border" ion-button block (click)="viewProdandService()">View Products & Services</button>
+                    </ion-col>
+                  </ion-row>
+                  <button *ngIf="!user" class="rateBtn" color="logo_border" ion-button block (click)="addRating()">Submit Rating/Review</button>
+                  <button *ngIf="user" class="rateBtn" color="logo_border" ion-button block (click)="addProdSer()">Add/Edit Products or Services</button>
+                </div>
+              </ion-card-content>
+            </ion-card>
+      </ion-col>
+
+      <ion-col ion-col col-6>
+        <ion-card padding>
+            <ion-row>
+              <ion-col>
+                <ion-icon name="stopwatch"></ion-icon>
+                {{mappingEstTime}}
+              </ion-col>
+              <ion-col>
+                <ion-icon name="bus"></ion-icon>
+                {{mappingDistance}}
+              </ion-col>
+            </ion-row>
+            <div class="mapDiv">
+                <div #map id="map"></div>
+            </div>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+      <div center text-center class="header">Ratings and Reviews</div>
+
+      <ion-card padding>
+          <ion-row>
+            <ion-col center text-center>
+              <div *ngIf="aveCleanliness == 0">
+                <ion-label>Cleanliness</ion-label>
+                <ion-icon id="star1" name="star-outline"></ion-icon>
+                <ion-icon id="star2" name="star-outline"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveCleanliness == 1">
+                <ion-label>Cleanliness</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star-outline"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveCleanliness == 2">
+                <ion-label>Cleanliness</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveCleanliness == 3">
+                <ion-label>Cleanliness</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveCleanliness == 4">
+                <ion-label>Cleanliness</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveCleanliness == 5">
+                <ion-label>Cleanliness</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star"></ion-icon>
+                <ion-icon id="star5" name="star"></ion-icon>
+              </div>
+              {{aveCleanlinessLabel}}
+            </ion-col>
+  
+            <ion-col center text-center>
+              <div *ngIf="aveService == 0">
+                <ion-label>Service</ion-label>
+                <ion-icon id="star1" name="star-outline"></ion-icon>
+                <ion-icon id="star2" name="star-outline"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveService == 1">
+                <ion-label>Service</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star-outline"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveService == 2">
+                <ion-label>Service</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveService == 3">
+                <ion-label>Service</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveService == 4">
+                <ion-label>Service</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveService == 5">
+                <ion-label>Service</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star"></ion-icon>
+                <ion-icon id="star5" name="star"></ion-icon>
+              </div>
+              {{aveServiceLabel}}
+            </ion-col>
+  
+            <ion-col center text-center>
+              <div *ngIf="aveFacilities == 0">
+                <ion-label>Facilities</ion-label>
+                <ion-icon id="star1" name="star-outline"></ion-icon>
+                <ion-icon id="star2" name="star-outline"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveFacilities == 1">
+                <ion-label>Facilities</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star-outline"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveFacilities == 2">
+                <ion-label>Facilities</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveFacilities == 3">
+                <ion-label>Facilities</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveFacilities == 4">
+                <ion-label>Facilities</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveFacilities == 5">
+                <ion-label>Facilities</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star"></ion-icon>
+                <ion-icon id="star5" name="star"></ion-icon>
+              </div>
+              {{aveFacilitiesLabel}}
+            </ion-col>
+  
+            <ion-col center text-center>
+              <div *ngIf="aveLocation == 0">
+                <ion-label>Location</ion-label>
+                <ion-icon id="star1" name="star-outline"></ion-icon>
+                <ion-icon id="star2" name="star-outline"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveLocation == 1">
+                <ion-label>Location</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star-outline"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveLocation == 2">
+                <ion-label>Location</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveLocation == 3">
+                <ion-label>Location</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveLocation == 4">
+                <ion-label>Location</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveLocation == 5">
+                <ion-label>Location</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star"></ion-icon>
+                <ion-icon id="star5" name="star"></ion-icon>
+              </div>
+              {{aveLocationLabel}}
+            </ion-col>
+  
+            <ion-col center text-center>
+              <div *ngIf="aveFoods == 0">
+                <ion-label>Foods</ion-label>
+                <ion-icon id="star1" name="star-outline"></ion-icon>
+                <ion-icon id="star2" name="star-outline"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveFoods == 1">
+                <ion-label>Foods</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star-outline"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveFoods == 2">
+                <ion-label>Foods</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveFoods == 3">
+                <ion-label>Foods</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveFoods == 4">
+                <ion-label>Foods</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveFoods == 5">
+                <ion-label>Foods</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star"></ion-icon>
+                <ion-icon id="star5" name="star"></ion-icon>
+              </div>
+              {{aveFoodsLabel}}
+            </ion-col>
+  
+            <ion-col center text-center>
+              <div *ngIf="aveRooms == 0">
+                <ion-label>Rooms</ion-label>
+                <ion-icon id="star1" name="star-outline"></ion-icon>
+                <ion-icon id="star2" name="star-outline"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveRooms == 1">
+                <ion-label>Rooms</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star-outline"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveRooms == 2">
+                <ion-label>Rooms</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveRooms == 3">
+                <ion-label>Rooms</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveRooms == 4">
+                <ion-label>Rooms</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveRooms == 5">
+                <ion-label>Rooms</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star"></ion-icon>
+                <ion-icon id="star5" name="star"></ion-icon>
+              </div>
+              {{aveRoomsLabel}}
+            </ion-col>
+              
+          </ion-row>
+      </ion-card>
+
+      <ion-card ion-col class="ratingCard" *ngFor="let item of rate" col-12 col-md-12 col-lg-12>
+        <ion-row padding>
+          <ion-col col-3>
+            <ion-avatar>
+              <img class="profilePic" [src]="item.profilePic">
+            </ion-avatar>
+          </ion-col>
+  
+          <ion-col class="ratingInfo" col-9>
+            <div>{{item.email}}</div>
+              <div *ngIf="item.rating == 1">
+                <ion-icon id="star1" name="star"></ion-icon>
+              </div>
+              <div *ngIf="item.rating == 2">
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+              </div>
+              <div *ngIf="item.rating == 3">
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+              </div>
+              <div *ngIf="item.rating == 4">
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star"></ion-icon>
+              </div>
+              <div *ngIf="item.rating == 5">
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star"></ion-icon>
+                <ion-icon id="star5" name="star"></ion-icon>
+              </div>
+          </ion-col>
+        </ion-row>
+  
+        <div class="ratingComment" padding center text-justify>{{item.comments}}</div>
+      </ion-card>
+     
+  </ion-grid>
+</ion-content>
+
+<ion-content *ngIf="mobile">
+    <ion-grid fixed>
+    <ion-row>
+        <ion-col>
+          <ion-buttons>
+            <button (click)="close()" clear ion-button icon-only><ion-icon name="ios-arrow-dropleft"></ion-icon>Back</button>
+            <button *ngIf="user" (click)="viewPermit(data.permits)" float-right clear ion-button icon-only><ion-icon name="document"></ion-icon>View Permit</button>
+            <button *ngIf="user" float-right (click)="edit(data.key, user, true)" clear ion-button icon-only><ion-icon name="create"></ion-icon>Edit</button>
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+
+    <div center text-center class="header">{{data.name}}</div>
+    <ion-slides pager autoplay="3000" loop="true" speed="2000">
+      <ion-slide *ngFor="let item of images">
+        <img class="imageSlider" [src]="item">
+      </ion-slide>
+    </ion-slides>
+
+    <ion-row>
+
+      <ion-col ion-col col-12>
+          <ion-card>
+              <ion-card-content>
+                <p padding text-center class="desc">
+                  {{data.description}}
+                </p>
+
+                <ion-row>
+                    <ion-col *ngIf="data.category == 1 || data.category == 2 || data.category == 3" center text-center>
+                      <ion-icon name='md-globe'></ion-icon>
+                      {{data.website}}
+                    </ion-col>
+                    <ion-col *ngIf="data.category == 1 || data.category == 2 || data.category == 3" center text-center>
+                      <ion-icon name='ios-phone-portrait-outline'></ion-icon>
+                      {{data.phone}}
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col center text-center>
+                      <ion-icon name="ios-navigate-outline"></ion-icon>
+                      {{data.address}}
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+      
+                    
+                  <ion-col center text-center>
+                    <div *ngIf="averageRate == 0">
+                      <ion-icon id="star1" name="star-outline"></ion-icon>
+                      <ion-icon id="star2" name="star-outline"></ion-icon>
+                      <ion-icon id="star3" name="star-outline"></ion-icon>
+                      <ion-icon id="star4" name="star-outline"></ion-icon>
+                      <ion-icon id="star5" name="star-outline"></ion-icon>
+                      ({{peopleRated}})
+                    </div>
+                    <div *ngIf="averageRate == 1">
+                      <ion-icon id="star1" name="star"></ion-icon>
+                      <ion-icon id="star2" name="star-outline"></ion-icon>
+                      <ion-icon id="star3" name="star-outline"></ion-icon>
+                      <ion-icon id="star4" name="star-outline"></ion-icon>
+                      <ion-icon id="star5" name="star-outline"></ion-icon>
+                      ({{peopleRated}})
+                    </div>
+                    <div *ngIf="averageRate == 2">
+                      <ion-icon id="star1" name="star"></ion-icon>
+                      <ion-icon id="star2" name="star"></ion-icon>
+                      <ion-icon id="star3" name="star-outline"></ion-icon>
+                      <ion-icon id="star4" name="star-outline"></ion-icon>
+                      <ion-icon id="star5" name="star-outline"></ion-icon>
+                      ({{peopleRated}})
+                    </div>
+                    <div *ngIf="averageRate == 3">
+                      <ion-icon id="star1" name="star"></ion-icon>
+                      <ion-icon id="star2" name="star"></ion-icon>
+                      <ion-icon id="star3" name="star"></ion-icon>
+                      <ion-icon id="star4" name="star-outline"></ion-icon>
+                      <ion-icon id="star5" name="star-outline"></ion-icon>
+                      ({{peopleRated}})
+                    </div>
+                    <div *ngIf="averageRate == 4">
+                      <ion-icon id="star1" name="star"></ion-icon>
+                      <ion-icon id="star2" name="star"></ion-icon>
+                      <ion-icon id="star3" name="star"></ion-icon>
+                      <ion-icon id="star4" name="star"></ion-icon>
+                      <ion-icon id="star5" name="star-outline"></ion-icon>
+                      ({{peopleRated}})
+                    </div>
+                    <div *ngIf="averageRate == 5">
+                      <ion-icon id="star1" name="star"></ion-icon>
+                      <ion-icon id="star2" name="star"></ion-icon>
+                      <ion-icon id="star3" name="star"></ion-icon>
+                      <ion-icon id="star4" name="star"></ion-icon>
+                      <ion-icon id="star5" name="star"></ion-icon>
+                      ({{peopleRated}})
+                    </div>
+                  </ion-col>
+                </ion-row>
+                <div padding>
+                  <ion-row>
+                    <ion-col  col-12 *ngIf="!user && data.category != '4'">
+                      <button class="rateBtn" color="logo_border" ion-button block (click)="messageOwner()">Message Owner</button>
+                    </ion-col>
+                    <ion-col  col-12 *ngIf="!user && data.category != '4'">
+                      <button class="rateBtn" color="logo_border" ion-button block (click)="viewProdandService()">View Products & Services</button>
+                    </ion-col>
+                  </ion-row>
+                  <button *ngIf="!user" class="rateBtn" color="logo_border" ion-button block (click)="addRating()">Submit Rating/Review</button>
+                  <button *ngIf="user" class="rateBtn" color="logo_border" ion-button block (click)="addProdSer()">Add/Edit Products or Services</button>
+                </div>
+              </ion-card-content>
+            </ion-card>
+      </ion-col>
+
+      <ion-col ion-col col-12>
+        <ion-card padding>
+            <ion-row>
+              <ion-col>
+                <ion-icon name="stopwatch"></ion-icon>
+                {{mappingEstTime}}
+              </ion-col>
+              <ion-col>
+                <ion-icon name="bus"></ion-icon>
+                {{mappingDistance}}
+              </ion-col>
+            </ion-row>
+            <div class="mapDiv">
+                <div #map id="map"></div>
+            </div>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+      <div center text-center class="header">Ratings and Reviews</div>
+
+      <ion-card padding>
+          <ion-row>
+            <ion-col center text-center>
+              <div *ngIf="aveCleanliness == 0">
+                <ion-label>Cleanliness</ion-label>
+                <ion-icon id="star1" name="star-outline"></ion-icon>
+                <ion-icon id="star2" name="star-outline"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveCleanliness == 1">
+                <ion-label>Cleanliness</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star-outline"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveCleanliness == 2">
+                <ion-label>Cleanliness</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveCleanliness == 3">
+                <ion-label>Cleanliness</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveCleanliness == 4">
+                <ion-label>Cleanliness</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveCleanliness == 5">
+                <ion-label>Cleanliness</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star"></ion-icon>
+                <ion-icon id="star5" name="star"></ion-icon>
+              </div>
+              {{aveCleanlinessLabel}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col center text-center>
+              <div *ngIf="aveService == 0">
+                <ion-label>Service</ion-label>
+                <ion-icon id="star1" name="star-outline"></ion-icon>
+                <ion-icon id="star2" name="star-outline"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveService == 1">
+                <ion-label>Service</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star-outline"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveService == 2">
+                <ion-label>Service</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star-outline"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveService == 3">
+                <ion-label>Service</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star-outline"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveService == 4">
+                <ion-label>Service</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star"></ion-icon>
+                <ion-icon id="star5" name="star-outline"></ion-icon>
+              </div>
+              <div *ngIf="aveService == 5">
+                <ion-label>Service</ion-label>
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star"></ion-icon>
+                <ion-icon id="star5" name="star"></ion-icon>
+              </div>
+              {{aveServiceLabel}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col center text-center>
+            <div *ngIf="aveFacilities == 0">
+              <ion-label>Facilities</ion-label>
+              <ion-icon id="star1" name="star-outline"></ion-icon>
+              <ion-icon id="star2" name="star-outline"></ion-icon>
+              <ion-icon id="star3" name="star-outline"></ion-icon>
+              <ion-icon id="star4" name="star-outline"></ion-icon>
+              <ion-icon id="star5" name="star-outline"></ion-icon>
+            </div>
+            <div *ngIf="aveFacilities == 1">
+              <ion-label>Facilities</ion-label>
+              <ion-icon id="star1" name="star"></ion-icon>
+              <ion-icon id="star2" name="star-outline"></ion-icon>
+              <ion-icon id="star3" name="star-outline"></ion-icon>
+              <ion-icon id="star4" name="star-outline"></ion-icon>
+              <ion-icon id="star5" name="star-outline"></ion-icon>
+            </div>
+            <div *ngIf="aveFacilities == 2">
+              <ion-label>Facilities</ion-label>
+              <ion-icon id="star1" name="star"></ion-icon>
+              <ion-icon id="star2" name="star"></ion-icon>
+              <ion-icon id="star3" name="star-outline"></ion-icon>
+              <ion-icon id="star4" name="star-outline"></ion-icon>
+              <ion-icon id="star5" name="star-outline"></ion-icon>
+            </div>
+            <div *ngIf="aveFacilities == 3">
+              <ion-label>Facilities</ion-label>
+              <ion-icon id="star1" name="star"></ion-icon>
+              <ion-icon id="star2" name="star"></ion-icon>
+              <ion-icon id="star3" name="star"></ion-icon>
+              <ion-icon id="star4" name="star-outline"></ion-icon>
+              <ion-icon id="star5" name="star-outline"></ion-icon>
+            </div>
+            <div *ngIf="aveFacilities == 4">
+              <ion-label>Facilities</ion-label>
+              <ion-icon id="star1" name="star"></ion-icon>
+              <ion-icon id="star2" name="star"></ion-icon>
+              <ion-icon id="star3" name="star"></ion-icon>
+              <ion-icon id="star4" name="star"></ion-icon>
+              <ion-icon id="star5" name="star-outline"></ion-icon>
+            </div>
+            <div *ngIf="aveFacilities == 5">
+              <ion-label>Facilities</ion-label>
+              <ion-icon id="star1" name="star"></ion-icon>
+              <ion-icon id="star2" name="star"></ion-icon>
+              <ion-icon id="star3" name="star"></ion-icon>
+              <ion-icon id="star4" name="star"></ion-icon>
+              <ion-icon id="star5" name="star"></ion-icon>
+            </div>
+            {{aveFacilitiesLabel}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col center text-center>
+            <div *ngIf="aveLocation == 0">
+              <ion-label>Location</ion-label>
+              <ion-icon id="star1" name="star-outline"></ion-icon>
+              <ion-icon id="star2" name="star-outline"></ion-icon>
+              <ion-icon id="star3" name="star-outline"></ion-icon>
+              <ion-icon id="star4" name="star-outline"></ion-icon>
+              <ion-icon id="star5" name="star-outline"></ion-icon>
+            </div>
+            <div *ngIf="aveLocation == 1">
+              <ion-label>Location</ion-label>
+              <ion-icon id="star1" name="star"></ion-icon>
+              <ion-icon id="star2" name="star-outline"></ion-icon>
+              <ion-icon id="star3" name="star-outline"></ion-icon>
+              <ion-icon id="star4" name="star-outline"></ion-icon>
+              <ion-icon id="star5" name="star-outline"></ion-icon>
+            </div>
+            <div *ngIf="aveLocation == 2">
+              <ion-label>Location</ion-label>
+              <ion-icon id="star1" name="star"></ion-icon>
+              <ion-icon id="star2" name="star"></ion-icon>
+              <ion-icon id="star3" name="star-outline"></ion-icon>
+              <ion-icon id="star4" name="star-outline"></ion-icon>
+              <ion-icon id="star5" name="star-outline"></ion-icon>
+            </div>
+            <div *ngIf="aveLocation == 3">
+              <ion-label>Location</ion-label>
+              <ion-icon id="star1" name="star"></ion-icon>
+              <ion-icon id="star2" name="star"></ion-icon>
+              <ion-icon id="star3" name="star"></ion-icon>
+              <ion-icon id="star4" name="star-outline"></ion-icon>
+              <ion-icon id="star5" name="star-outline"></ion-icon>
+            </div>
+            <div *ngIf="aveLocation == 4">
+              <ion-label>Location</ion-label>
+              <ion-icon id="star1" name="star"></ion-icon>
+              <ion-icon id="star2" name="star"></ion-icon>
+              <ion-icon id="star3" name="star"></ion-icon>
+              <ion-icon id="star4" name="star"></ion-icon>
+              <ion-icon id="star5" name="star-outline"></ion-icon>
+            </div>
+            <div *ngIf="aveLocation == 5">
+              <ion-label>Location</ion-label>
+              <ion-icon id="star1" name="star"></ion-icon>
+              <ion-icon id="star2" name="star"></ion-icon>
+              <ion-icon id="star3" name="star"></ion-icon>
+              <ion-icon id="star4" name="star"></ion-icon>
+              <ion-icon id="star5" name="star"></ion-icon>
+            </div>
+            {{aveLocationLabel}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col center text-center>
+            <div *ngIf="aveFoods == 0">
+              <ion-label>Foods</ion-label>
+              <ion-icon id="star1" name="star-outline"></ion-icon>
+              <ion-icon id="star2" name="star-outline"></ion-icon>
+              <ion-icon id="star3" name="star-outline"></ion-icon>
+              <ion-icon id="star4" name="star-outline"></ion-icon>
+              <ion-icon id="star5" name="star-outline"></ion-icon>
+            </div>
+            <div *ngIf="aveFoods == 1">
+              <ion-label>Foods</ion-label>
+              <ion-icon id="star1" name="star"></ion-icon>
+              <ion-icon id="star2" name="star-outline"></ion-icon>
+              <ion-icon id="star3" name="star-outline"></ion-icon>
+              <ion-icon id="star4" name="star-outline"></ion-icon>
+              <ion-icon id="star5" name="star-outline"></ion-icon>
+            </div>
+            <div *ngIf="aveFoods == 2">
+              <ion-label>Foods</ion-label>
+              <ion-icon id="star1" name="star"></ion-icon>
+              <ion-icon id="star2" name="star"></ion-icon>
+              <ion-icon id="star3" name="star-outline"></ion-icon>
+              <ion-icon id="star4" name="star-outline"></ion-icon>
+              <ion-icon id="star5" name="star-outline"></ion-icon>
+            </div>
+            <div *ngIf="aveFoods == 3">
+              <ion-label>Foods</ion-label>
+              <ion-icon id="star1" name="star"></ion-icon>
+              <ion-icon id="star2" name="star"></ion-icon>
+              <ion-icon id="star3" name="star"></ion-icon>
+              <ion-icon id="star4" name="star-outline"></ion-icon>
+              <ion-icon id="star5" name="star-outline"></ion-icon>
+            </div>
+            <div *ngIf="aveFoods == 4">
+              <ion-label>Foods</ion-label>
+              <ion-icon id="star1" name="star"></ion-icon>
+              <ion-icon id="star2" name="star"></ion-icon>
+              <ion-icon id="star3" name="star"></ion-icon>
+              <ion-icon id="star4" name="star"></ion-icon>
+              <ion-icon id="star5" name="star-outline"></ion-icon>
+            </div>
+            <div *ngIf="aveFoods == 5">
+              <ion-label>Foods</ion-label>
+              <ion-icon id="star1" name="star"></ion-icon>
+              <ion-icon id="star2" name="star"></ion-icon>
+              <ion-icon id="star3" name="star"></ion-icon>
+              <ion-icon id="star4" name="star"></ion-icon>
+              <ion-icon id="star5" name="star"></ion-icon>
+            </div>
+            {{aveFoodsLabel}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col center text-center>
+            <div *ngIf="aveRooms == 0">
+              <ion-label>Rooms</ion-label>
+              <ion-icon id="star1" name="star-outline"></ion-icon>
+              <ion-icon id="star2" name="star-outline"></ion-icon>
+              <ion-icon id="star3" name="star-outline"></ion-icon>
+              <ion-icon id="star4" name="star-outline"></ion-icon>
+              <ion-icon id="star5" name="star-outline"></ion-icon>
+            </div>
+            <div *ngIf="aveRooms == 1">
+              <ion-label>Rooms</ion-label>
+              <ion-icon id="star1" name="star"></ion-icon>
+              <ion-icon id="star2" name="star-outline"></ion-icon>
+              <ion-icon id="star3" name="star-outline"></ion-icon>
+              <ion-icon id="star4" name="star-outline"></ion-icon>
+              <ion-icon id="star5" name="star-outline"></ion-icon>
+            </div>
+            <div *ngIf="aveRooms == 2">
+              <ion-label>Rooms</ion-label>
+              <ion-icon id="star1" name="star"></ion-icon>
+              <ion-icon id="star2" name="star"></ion-icon>
+              <ion-icon id="star3" name="star-outline"></ion-icon>
+              <ion-icon id="star4" name="star-outline"></ion-icon>
+              <ion-icon id="star5" name="star-outline"></ion-icon>
+            </div>
+            <div *ngIf="aveRooms == 3">
+              <ion-label>Rooms</ion-label>
+              <ion-icon id="star1" name="star"></ion-icon>
+              <ion-icon id="star2" name="star"></ion-icon>
+              <ion-icon id="star3" name="star"></ion-icon>
+              <ion-icon id="star4" name="star-outline"></ion-icon>
+              <ion-icon id="star5" name="star-outline"></ion-icon>
+            </div>
+            <div *ngIf="aveRooms == 4">
+              <ion-label>Rooms</ion-label>
+              <ion-icon id="star1" name="star"></ion-icon>
+              <ion-icon id="star2" name="star"></ion-icon>
+              <ion-icon id="star3" name="star"></ion-icon>
+              <ion-icon id="star4" name="star"></ion-icon>
+              <ion-icon id="star5" name="star-outline"></ion-icon>
+            </div>
+            <div *ngIf="aveRooms == 5">
+              <ion-label>Rooms</ion-label>
+              <ion-icon id="star1" name="star"></ion-icon>
+              <ion-icon id="star2" name="star"></ion-icon>
+              <ion-icon id="star3" name="star"></ion-icon>
+              <ion-icon id="star4" name="star"></ion-icon>
+              <ion-icon id="star5" name="star"></ion-icon>
+            </div>
+            {{aveRoomsLabel}}
+          </ion-col>
+        </ion-row>
+      </ion-card>
+
+      <ion-card ion-col class="ratingCard" *ngFor="let item of rate" col-12 col-md-12 col-lg-12>
+        <ion-row padding>
+          <ion-col col-3>
+            <ion-avatar>
+              <img class="profilePic" [src]="item.profilePic">
+            </ion-avatar>
+          </ion-col>
+  
+          <ion-col class="ratingInfo" col-9>
+            <div>{{item.email}}</div>
+              <div *ngIf="item.rating == 1">
+                <ion-icon id="star1" name="star"></ion-icon>
+              </div>
+              <div *ngIf="item.rating == 2">
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+              </div>
+              <div *ngIf="item.rating == 3">
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+              </div>
+              <div *ngIf="item.rating == 4">
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star"></ion-icon>
+              </div>
+              <div *ngIf="item.rating == 5">
+                <ion-icon id="star1" name="star"></ion-icon>
+                <ion-icon id="star2" name="star"></ion-icon>
+                <ion-icon id="star3" name="star"></ion-icon>
+                <ion-icon id="star4" name="star"></ion-icon>
+                <ion-icon id="star5" name="star"></ion-icon>
+              </div>
+          </ion-col>
+        </ion-row>
+  
+        <div class="ratingComment" padding center text-justify>{{item.comments}}</div>
+      </ion-card>
+    </ion-grid>
+</ion-content>

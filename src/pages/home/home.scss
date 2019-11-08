@@ -1,0 +1,165 @@
+page-home {
+
+    .newsDivider {
+        height: 450px;
+        overflow: auto;
+        font-size: 15px;
+        border: 1px solid map_get($colors,logo_border);
+    }
+
+    .newsContent {
+        width: 500px !important;
+        height: 413px;
+        margin-left: 5px;
+        display: inline-block;
+        background-image: url(../../assets/imgs/bg.jpg);
+        border: 2px solid #f4f4f4;
+    }
+
+    #content {
+        margin-top: 3%;
+        overflow: hidden; 
+        text-overflow: ellipsis;
+        height: 3em;
+        line-height: 1em;
+        text-align: justify;
+    }
+
+    #noImage{
+        margin-top: 5%;
+        overflow: hidden; 
+        text-overflow: ellipsis;
+        height: 17.2em;
+        line-height: 1em;
+        text-align: justify;
+    }
+
+    .centerContent{
+        display: flex;
+        align-items:center;
+    }
+
+    .newsTitle{
+        color: map_get($colors,dark);
+        text-align: center; 
+        font-weight: bold;
+        font-size: 15px;
+    }
+    
+    img {
+        height: 200px;
+        width: 100%;
+    }
+
+    .banner{
+        width: 100%;
+        height: 650px;
+    }
+
+    .information{
+        height: 320px;
+        border-radius: 5%;
+    }
+
+    .infoImage{
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        display: inline-block;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        border: 5px solid map_get($colors,logo_border);
+    }
+
+    .scroll-zoom-wrapper {
+        white-space: nowrap;
+    }
+
+    ion-scroll {
+        min-height: 160px; 
+        height: 435px;
+
+            .scroll-content {
+            padding: 0px !important;
+        }    
+    }
+
+    ion-card-header{
+        font-weight: bold;
+    }
+
+    .faqHeader{
+        font-family: "Caviar Dreams" !important;
+        color: map_get($colors,logo_border);
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .faqCard{
+        margin-bottom: 10%;
+    }
+
+    .infoText{
+        font-size: 17px;
+        text-align: justify;
+    }
+
+    h1{
+        font-size: 20px !important;
+    }
+
+    hr {
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    }
+
+    ion-slides{
+        display: block;
+        width: 100%;
+        height: 90%;
+    }
+
+    .visionMission{
+        height: 350px;     
+    }
+
+    .bannerMobile{
+        height: 275px !important;
+    }
+
+    .slidesMobile{
+        height: 40% !important; 
+    }
+
+    .infoTextMobile{
+        font-size: 13.5px;
+        text-align: justify;
+    }
+
+    .infoImageMobile{
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        display: inline-block;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        border: 5px solid map_get($colors,logo_border);  
+    }
+
+    .newsMobile{
+        height: 145px !important;
+    }
+
+    .newsContentMobile{
+        height: 330px !important;
+    }
+
+    .newsScrollMobile{
+        height: 350px !important;
+    }
+    
+}

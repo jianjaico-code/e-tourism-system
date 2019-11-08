@@ -1,0 +1,18 @@
+<ion-content padding>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label stacked>Category Name</ion-label>
+        <ion-input type="text" placeholder="Category Name" name="catname" #catname></ion-input>
+      </ion-item>
+    </ion-col>
+
+    <ion-col>
+      <button ion-button (click)="addCategory()">Add Category</button>
+    </ion-col>
+  </ion-row>
+
+  <ion-item *ngFor="let item of data">
+    {{item.name}}
+  </ion-item>
+</ion-content>

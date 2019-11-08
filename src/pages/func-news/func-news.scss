@@ -1,0 +1,24 @@
+page-func-news {
+    textarea {
+        resize: none;
+        width: 100%;
+        height: 150px;
+    }
+
+    ion-item{
+        background-image: url('../../assets/imgs/bg.jpg');
+        background-attachment: fixed;
+        border-radius: 1rem;
+        box-shadow: 0 0 1px rgba(86, 61, 124, 0.2), 0 2px 4px rgba(86, 61, 124, 0.15);
+    }
+
+    ion-label{
+        color: map_get($colors,theme_font) !important;
+        font-size: 16px !important;
+    }
+
+    .dataImage{
+        width: 100%;
+        height: 250px;
+    }
+}

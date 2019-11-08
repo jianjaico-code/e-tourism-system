@@ -1,0 +1,167 @@
+<ion-content *ngIf="!mobile">
+  <div class="subBanner"></div>
+  <ion-grid fixed>
+
+      <ion-row class="menuRow">
+        <ion-col col-6>
+          <ion-searchbar (ionInput)="getItems($event)" placeholder="Search for a  Place"></ion-searchbar>
+        </ion-col>
+        <ion-col col-6>
+          <button ion-button icon-only outline color="logo_border" (click)="filterEst()"><ion-icon name="ios-funnel"></ion-icon>Category &nbsp;</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-card class="places animated fadeIn" ion-col *ngFor="let item of establishments" col-12 col-md-4 col-lg-12>  
+            <ion-card-content>
+            <ion-row>
+              <ion-col>
+                 <img class="imageSlider" [src]="item.imageurl[0]">
+              </ion-col>
+
+              <ion-col>
+                  <ion-card-title center text-center>{{item.name}}</ion-card-title>
+                  <ion-row>
+                    <ion-col class="infoData">
+                    <div *ngIf="item.averageRate == 0">
+                      <ion-icon color="theme_font" id="star1" name="star-outline"></ion-icon>
+                      <ion-icon color="theme_font" id="star2" name="star-outline"></ion-icon>
+                      <ion-icon color="theme_font" id="star3" name="star-outline"></ion-icon>
+                      <ion-icon color="theme_font" id="star4" name="star-outline"></ion-icon>
+                      <ion-icon color="theme_font" id="star5" name="star-outline"></ion-icon>
+                      {{item.peopleRated}} Reviews
+                    </div>
+                    <div *ngIf="item.averageRate == 1">
+                      <ion-icon color="theme_font" id="star1" name="star"></ion-icon>
+                      <ion-icon color="theme_font" id="star2" name="star-outline"></ion-icon>
+                      <ion-icon color="theme_font" id="star3" name="star-outline"></ion-icon>
+                      <ion-icon color="theme_font" id="star4" name="star-outline"></ion-icon>
+                      <ion-icon color="theme_font" id="star5" name="star-outline"></ion-icon>
+                      {{item.peopleRated}} Reviews
+                    </div>
+                    <div *ngIf="item.averageRate == 2">
+                      <ion-icon color="theme_font" id="star1" name="star"></ion-icon>
+                      <ion-icon color="theme_font" id="star2" name="star"></ion-icon>
+                      <ion-icon color="theme_font" id="star3" name="star-outline"></ion-icon>
+                      <ion-icon color="theme_font" id="star4" name="star-outline"></ion-icon>
+                      <ion-icon color="theme_font" id="star5" name="star-outline"></ion-icon>
+                      {{item.peopleRated}} Reviews
+                    </div>
+                    <div *ngIf="item.averageRate == 3">
+                      <ion-icon color="theme_font" id="star1" name="star"></ion-icon>
+                      <ion-icon color="theme_font" id="star2" name="star"></ion-icon>
+                      <ion-icon color="theme_font" id="star3" name="star"></ion-icon>
+                      <ion-icon color="theme_font" id="star4" name="star-outline"></ion-icon>
+                      <ion-icon color="theme_font" id="star5" name="star-outline"></ion-icon>
+                      {{item.peopleRated}} Reviews
+                    </div>
+                    <div *ngIf="item.averageRate == 4">
+                      <ion-icon color="theme_font" id="star1" name="star"></ion-icon>
+                      <ion-icon color="theme_font" id="star2" name="star"></ion-icon>
+                      <ion-icon color="theme_font" id="star3" name="star"></ion-icon>
+                      <ion-icon color="theme_font" id="star4" name="star"></ion-icon>
+                      <ion-icon color="theme_font" id="star5" name="star-outline"></ion-icon>
+                      {{item.peopleRated}} Reviews
+                    </div>
+                    <div *ngIf="item.averageRate == 5">
+                      <ion-icon color="theme_font" id="star1" name="star"></ion-icon>
+                      <ion-icon color="theme_font" id="star2" name="star"></ion-icon>
+                      <ion-icon color="theme_font" id="star3" name="star"></ion-icon>
+                      <ion-icon color="theme_font" id="star4" name="star"></ion-icon>
+                      <ion-icon color="theme_font" id="star5" name="star"></ion-icon>
+                      {{item.peopleRated}} Reviews
+                    </div>  
+                    </ion-col>
+                    <ion-col text-center class="infoData">
+                      <span>{{item.address}}</span>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col text-center class="infoData">
+                      <span>{{item.category}}</span>
+                    </ion-col>
+                  </ion-row>
+                  <div id="content">{{item.description}}</div>
+                  <button ion-button round block color="dark" (click)="pushEst(item)">Click for More</button>
+              </ion-col>
+            </ion-row>
+            </ion-card-content>
+          </ion-card>
+        </ion-row>
+  </ion-grid>
+</ion-content>
+
+
+<ion-content *ngIf="mobile">
+  <ion-row class="menuRow">
+    <ion-col>
+      <ion-searchbar (ionInput)="getItems($event)" placeholder="Search for a  Place"></ion-searchbar>
+    </ion-col>
+  </ion-row>
+
+  <div padding>
+    <button ion-button icon-only outline block (click)="filterEst()"><ion-icon name="ios-funnel"></ion-icon> Filter</button>
+  </div>
+  
+
+  <ion-card class="animated fadeIn" (click)="pushEst(item)" *ngFor="let item of establishments">
+    <ion-card-header>
+      <img [src]="item.imageurl[0]">
+      <ion-card-title center text-center>{{item.name}}</ion-card-title>
+      
+      <ion-row>
+          <div *ngIf="item.averageRate == 0">
+            <ion-icon color="theme_font" id="star1" name="star-outline"></ion-icon>
+            <ion-icon color="theme_font" id="star2" name="star-outline"></ion-icon>
+            <ion-icon color="theme_font" id="star3" name="star-outline"></ion-icon>
+            <ion-icon color="theme_font" id="star4" name="star-outline"></ion-icon>
+            <ion-icon color="theme_font" id="star5" name="star-outline"></ion-icon>
+            <div class="contentMobile">{{item.peopleRated}} Reviews</div>
+          </div>
+          <div *ngIf="item.averageRate == 1">
+            <ion-icon color="theme_font" id="star1" name="star"></ion-icon>
+            <ion-icon color="theme_font" id="star2" name="star-outline"></ion-icon>
+            <ion-icon color="theme_font" id="star3" name="star-outline"></ion-icon>
+            <ion-icon color="theme_font" id="star4" name="star-outline"></ion-icon>
+            <ion-icon color="theme_font" id="star5" name="star-outline"></ion-icon>
+            <div class="contentMobile">{{item.peopleRated}} Reviews</div>
+          </div>
+          <div *ngIf="item.averageRate == 2">
+            <ion-icon color="theme_font" id="star1" name="star"></ion-icon>
+            <ion-icon color="theme_font" id="star2" name="star"></ion-icon>
+            <ion-icon color="theme_font" id="star3" name="star-outline"></ion-icon>
+            <ion-icon color="theme_font" id="star4" name="star-outline"></ion-icon>
+            <ion-icon color="theme_font" id="star5" name="star-outline"></ion-icon>
+            <div class="contentMobile">{{item.peopleRated}} Reviews</div>
+          </div>
+          <div *ngIf="item.averageRate == 3">
+            <ion-icon color="theme_font" id="star1" name="star"></ion-icon>
+            <ion-icon color="theme_font" id="star2" name="star"></ion-icon>
+            <ion-icon color="theme_font" id="star3" name="star"></ion-icon>
+            <ion-icon color="theme_font" id="star4" name="star-outline"></ion-icon>
+            <ion-icon color="theme_font" id="star5" name="star-outline"></ion-icon>
+            <div class="contentMobile">{{item.peopleRated}} Reviews</div>
+          </div>
+          <div *ngIf="item.averageRate == 4">
+            <ion-icon color="theme_font" id="star1" name="star"></ion-icon>
+            <ion-icon color="theme_font" id="star2" name="star"></ion-icon>
+            <ion-icon color="theme_font" id="star3" name="star"></ion-icon>
+            <ion-icon color="theme_font" id="star4" name="star"></ion-icon>
+            <ion-icon color="theme_font" id="star5" name="star-outline"></ion-icon>
+            <div class="contentMobile">{{item.peopleRated}} Reviews</div>
+          </div>
+          <div *ngIf="item.averageRate == 5">
+            <ion-icon color="theme_font" id="star1" name="star"></ion-icon>
+            <ion-icon color="theme_font" id="star2" name="star"></ion-icon>
+            <ion-icon color="theme_font" id="star3" name="star"></ion-icon>
+            <ion-icon color="theme_font" id="star4" name="star"></ion-icon>
+            <ion-icon color="theme_font" id="star5" name="star"></ion-icon>
+            <div class="contentMobile">{{item.peopleRated}} Reviews</div>
+          </div>  
+        </ion-row>
+
+    </ion-card-header>
+    <ion-card-content>
+      <div id="content" class="contentMobile">{{item.description}}</div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

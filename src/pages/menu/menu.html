@@ -1,0 +1,59 @@
+<ion-menu side="left" [content]="content">
+  <ion-header>
+    <ion-toolbar class="user-profile">
+
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+              <div class="user-avatar">
+                <img [src]="info.pic">
+              </div>
+          </ion-col>
+          <ion-col padding-top col-8>
+            <h2 ion-text class="no-margin bold text-white">
+              {{info.name}}
+            </h2>
+            <span *ngIf="info.privilage == 1" ion-text color="light">
+              Tourist
+            </span>
+            <span *ngIf="info.privilage == 2" ion-text color="light">
+              Businessman
+            </span>
+            <span *ngIf="info.privilage == 3" ion-text color="light">
+              Tourism Officer
+            </span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row no-padding class="other-data">
+          <ion-col no-padding class="column">
+            <button ion-button (click)="editProfile()" icon-left small full color="light" menuClose>
+              <ion-icon name="contact"></ion-icon>
+              Edit Profile
+            </button>
+          </ion-col>
+          <ion-col no-padding class="column">
+            <button ion-button icon-left small full color="light" menuClose (click)="logout()">
+              <ion-icon name="log-out"></ion-icon>
+              Log Out
+            </button>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+
+    </ion-toolbar>
+  </ion-header>
+ 
+  <ion-content>
+    <ion-list>
+      <button class="sideMenu-Btn" ion-item detail-none block menuClose *ngFor="let p of pages" (click)="openPage(p.page)">
+        <ion-icon item-start [name]="p.icon"></ion-icon>
+        {{ p.title }}
+      </button>
+    </ion-list>
+ 
+  </ion-content>
+</ion-menu>
+ 
+<ion-nav #content main [root]="rootPage"></ion-nav>

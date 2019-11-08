@@ -1,0 +1,28 @@
+page-mapping {
+    ion-icon{
+        font-size: 35px !important;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .estSelector{
+        height: 533px !important;
+        overflow: auto;
+        
+    }
+
+    .mapDiv{
+        height: 417px;
+        margin-top: 2%;
+        margin-bottom: 5%;
+    }
+
+    #map {
+        height: 100% !important;
+        border: 2px solid map_get($colors,dark);
+    }
+
+    .mapDivMobile{
+        height: 300px !important;
+    }
+}

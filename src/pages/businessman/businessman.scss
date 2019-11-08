@@ -1,0 +1,30 @@
+page-businessman {
+    .imageSlider{
+        height: 145px;
+        width: 100%;
+        border-radius: 5% !important;
+    }
+
+    ion-slides{
+        width: 250px !important;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #active{
+        color: map_get($colors,activated) !important;
+    }
+
+    .ion-md-star{
+        color: #ffb400;
+    }
+
+    .ion-md-star-outline{
+        color: #ffb400;
+    }
+
+    #inactive{
+        color: map_get($colors,danger) !important;
+    }
+}

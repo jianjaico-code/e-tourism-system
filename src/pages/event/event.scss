@@ -1,0 +1,23 @@
+page-event {
+    .toolbar-background {
+        background-color:  map_get($colors,theme_color) !important;
+    }
+
+    .title {
+        font-family: "Caviar Dreams" !important;
+        font-size: 25px;
+        color: map_get($colors,dark);
+    }
+
+    .desc {
+        overflow: auto;
+        font-size: 15px;
+        border-radius: 5%;
+        border: 2px solid map_get($colors,logo_border);
+    }
+
+    img{
+        width: 400px;
+        margin-left: 13%;
+    }
+}

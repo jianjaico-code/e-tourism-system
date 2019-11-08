@@ -1,0 +1,122 @@
+<ion-content padding class="animated fadeIn">
+  <ion-buttons end>
+    <button ion-button tappable (click)="closeModal()">
+      <ion-icon name="ios-close-circle-outline"></ion-icon>
+    </button>
+  </ion-buttons>
+  <ion-row>
+      <ion-col>
+          <ion-item>
+            <ion-label stacked>Establishment Name</ion-label>
+            <ion-input *ngIf="!status" type="text" placeholder="Name" name="Name" #estname></ion-input>
+            <ion-input *ngIf="status" type="text" placeholder="Name" name="Name" [(ngModel)]="data.name" ></ion-input>
+          </ion-item>
+      </ion-col>
+  
+      <ion-col>
+          <ion-item>
+            <ion-label stacked>Establishment Address</ion-label>
+            <ion-input *ngIf="!status" type="text" placeholder="Address" name="Address" #estaddress></ion-input>
+            <ion-input *ngIf="status" type="text" placeholder="Address" name="Address" [(ngModel)]="data.address" ></ion-input>
+          </ion-item>
+      </ion-col>
+    </ion-row>
+  
+    <ion-row *ngIf="userType == 2">
+      <ion-col>
+          <ion-item>
+            <ion-label stacked>Establishment Website</ion-label>
+            <ion-input *ngIf="!status" type="text" placeholder="Website" name="Website" #estwebsite></ion-input>
+            <ion-input *ngIf="status" type="text" placeholder="Website" name="Website" [(ngModel)]="data.website" ></ion-input>
+          </ion-item>
+      </ion-col>
+  
+      <ion-col>
+          <ion-item>
+            <ion-label stacked>Establishment Phone</ion-label>
+            <ion-input *ngIf="!status" type="number" placeholder="Phone" name="Phone" #estphone></ion-input>
+            <ion-input *ngIf="status" type="number" placeholder="Phone" name="Phone" [(ngModel)]="data.phone" ></ion-input>
+          </ion-item>
+      </ion-col>
+    </ion-row>
+      
+      <ion-item>
+        <ion-label stacked>Establishment Description</ion-label>
+        <ion-textarea *ngIf="!status" placeholder="Description" name="Description" #estdescription></ion-textarea>
+        <ion-textarea *ngIf="status" placeholder="Description" name="Description" [(ngModel)]="data.description" ></ion-textarea> 
+      </ion-item>
+  
+  
+      <ion-row>
+        <ion-col *ngIf="userType == 2">
+            <ion-label stacked>Establishment Category</ion-label>
+            <button ion-button (click)="showCategory()">Select Category</button>  
+            {{categoryDesc}}
+          <ion-item *ngIf="status">
+              <ion-select [(ngModel)]="data.category">
+                <ion-option value="1">Restaurant</ion-option>
+                <ion-option value="2">Beach</ion-option>
+                <ion-option value="3">Hotel</ion-option>
+              </ion-select>
+            </ion-item>
+        </ion-col>
+  
+        <ion-col *ngIf="userType == 3">
+            <ion-item>
+              <ion-label stacked>Establishment Status</ion-label>
+              <ion-select *ngIf="!status" #eststatus>
+                <ion-option value="1">Active</ion-option>
+                <ion-option value="2">Inactive</ion-option>
+              </ion-select>
+
+              <ion-select *ngIf="status" [(ngModel)]="data.status">
+                <ion-option value="1">Active</ion-option>
+                <ion-option value="2">Inactive</ion-option>
+              </ion-select>
+            </ion-item>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row *ngIf="!status">
+        <ion-col>
+            <ion-label stacked>Add Pictures for Establishment Page (Min. of 3)</ion-label>
+            <ion-item>
+              <label>
+                <input type="file" (change)="detectFiles($event)" multiple>
+              </label>
+            </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row *ngIf="!status && userType == 2">
+        <ion-col>
+            <ion-label stacked>Please attach Business Permit, Fire Safety Certificate, Sanitary Permit</ion-label>
+            <ion-item>
+              <label>
+                <input type="file" (change)="detectFilesAttachment($event)" multiple>
+              </label>
+            </ion-item>
+        </ion-col>
+      </ion-row>
+
+    <input *ngIf="status" type="file" multiple #fileInput style="visibility: hidden; height: 0px;" (change)="detectFiles($event)"/>
+    <div *ngIf="status" class="profile-image-wrapper">
+      <img class="profile-image" [src]="data.images[0]">
+      <div class="cameraOutline" (click)="getPicture()"><ion-icon name="ios-camera-outline" class="ios-camera-outline" md="ios-camera-outline"></ion-icon></div>
+    </div>
+
+      <ion-label *ngIf="!status" stacked>Latitude</ion-label>
+      <input *ngIf="!status" type="number" placeholder="Latitude" id="latVal" #latVal>
+    
+      <ion-label *ngIf="!status" stacked>Longitude</ion-label>
+      <input *ngIf="!status" type="number" placeholder="Longitude" id="longVal" #longVal>
+
+      <button *ngIf="!status" (click)="pin()">Pin</button>
+  <div *ngIf="!status" #map id="map"></div>
+
+  <button *ngIf="!status" ion-button round block center block round [disabled]="!selectedFiles" (click)="saveEstablishment()">Save</button>
+  <button *ngIf="status" ion-button round block center block round (click)="updateEstablishment()">Update</button>
+
+
+
+</ion-content>
